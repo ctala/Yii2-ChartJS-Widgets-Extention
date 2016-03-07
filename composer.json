@@ -1,0 +1,21 @@
+{
+    "name": "ctala/yii2-ctala-chartjs",
+    "description": "An extention that helps create beautifull charts using ChartJS",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extention"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cristian Tala S.",
+            "email": "yomismo@cristiantala.cl"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ctala\\chartjs\\": ""
+        }
+    }
+}
