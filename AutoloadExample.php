@@ -11,21 +11,24 @@ use \yii\web\View;
 class AutoloadExample extends \yii\base\Widget {
 
     public $chartType = "bar";
-    public $style = "width: 50%";
+    public $style = "width: 100%";
     public $id = "canvas";
+    public $class = "class='col-md-8'";
     public $height = 450;
     public $width = 650;
     public $labels = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
     public $data = array(
-        array(25, 345, 452, 1, 45, 6, 2, 6, 12, 6), array(1, 2, 3, 4, 5, 6, 7, 8, 9, 0),
+        array(25, 35, 52, 1, 45, 6, 2, 6, 12, 6), array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
     );
 
     public function run() {
         ChartJSAsset::register($this->view);
 
-        $myDiv = "<div style='$this->style'>
+        $myDiv = "<div class='row'>"
+                . "<div class='$this->class' style='$this->style'>
 			<canvas id='$this->id' height='$this->height' width='$this->width'></canvas>
-		</div>";
+		</div> "
+                . "</div>";
 
         echo $myDiv;
 
@@ -41,7 +44,7 @@ class AutoloadExample extends \yii\base\Widget {
         return "Hello!";
     }
 
-    function generateBar() {
+    private function generateBar() {
         $script = '
             var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
             var barChartData = {
@@ -64,7 +67,7 @@ class AutoloadExample extends \yii\base\Widget {
 		]
 	}
 	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
+		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
 		window.myBar = new Chart(ctx).Bar(barChartData, {
 			responsive : true
 		});
