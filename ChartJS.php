@@ -20,6 +20,7 @@ class ChartJS extends \yii\base\Widget {
     public $data = array(
         array(25, 35, 52, 1, 45, 6, 2, 6, 12, 6), array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
     );
+    public $responsive = true;
 
     public function run() {
         ChartJSAsset::register($this->view);
@@ -50,7 +51,7 @@ class ChartJS extends \yii\base\Widget {
         $cantidad = 1;
         $tamano = count($this->data);
         foreach ($this->data as $key => $data) {
-            $colorBase = 255 / $tamano * $cantidad;
+            $colorBase = intval(255 / $tamano * $cantidad);
             $datasets[] = array(
                 "label" => $key,
                 "fillColor" => "rgba($colorBase,$colorBase,$colorBase,0.5)",
@@ -71,7 +72,7 @@ class ChartJS extends \yii\base\Widget {
 	window.onload = function(){
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
 		window.myBar = new Chart(ctx).Bar(barChartData, {
-			responsive : false
+			responsive : '. $this->responsive .'
 		});
 	}';
         $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar');
