@@ -41,19 +41,18 @@ class ChartJS extends \yii\base\Widget {
             default:
                 break;
         }
-            
     }
 
     private function generateBar() {
-        
-        
-        $datasets=array();
-        $cantidad = 0;
+
+
+        $datasets = array();
+        $cantidad = 1;
+        $tamano = count($this->data);
         foreach ($this->data as $key => $data) {
-            $colorBase = $cantidad*10+5;
+            $colorBase = 255 / $tamano * $cantidad;
             $datasets[] = array(
-                
-                "label" =>$key,
+                "label" => $key,
                 "fillColor" => "rgba($colorBase,$colorBase,$colorBase,0.5)",
                 "strokeColor" => "rgba( $colorBase ,$colorBase,$colorBase,0.8)",
                 "highlightFill" => "rgba($colorBase,$colorBase,$colorBase,0.75)",
@@ -61,19 +60,18 @@ class ChartJS extends \yii\base\Widget {
                 "data" => $data
             );
             $cantidad++;
-            
         }
-        
+
         $script = '
-            var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+            
             var barChartData = {
 		labels : ' . json_encode($this->labels) . ',
-		datasets : '.  json_encode($datasets).'
+		datasets : ' . json_encode($datasets) . '
 	}
 	window.onload = function(){
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
 		window.myBar = new Chart(ctx).Bar(barChartData, {
-			responsive : true
+			responsive : false
 		});
 	}';
         $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar');
