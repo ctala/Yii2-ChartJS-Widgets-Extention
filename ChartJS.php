@@ -11,6 +11,7 @@ use \yii\web\View;
 class ChartJS extends \yii\base\Widget {
 
     public $chartType = "bar";
+    public $titulo = "Mi Super Titulo";
     public $style = "";
     public $id = "canvas";
     public $class = "col-md-12";
@@ -25,10 +26,13 @@ class ChartJS extends \yii\base\Widget {
     public function run() {
         ChartJSAsset::register($this->view);
 
-        $myDiv = "<div class='row'>"
+        $myDiv = "<div class='row'>" .
+                "<div class='panel panel-default'>"
+                . "<div class='panel-heading'>$this->titulo</div>"
                 . "<div class='$this->class' style='$this->style'>
 			<canvas id='$this->id' height='$this->height' width='$this->width'></canvas>
-		</div> "
+		</div>
+                </div> "
                 . "</div>";
 
         echo $myDiv;
