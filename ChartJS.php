@@ -73,17 +73,18 @@ class ChartJS extends \yii\base\Widget {
             $cantidad++;
         }
 
-        $nombreVariable= "barCharData$this->id";
+        $nombreVariable= "myBar$this->id";
         
         $script = '
-            
-            var '.$nombreVariable.' = {
-		labels : ' . json_encode($this->labels) . ',
-		datasets : ' . json_encode($datasets) . '
-	}
+
 	window.onload = function(){
+                    var barChartData = {
+                        labels : ' . json_encode($this->labels) . ',
+                        datasets : ' . json_encode($datasets) . '
+                    }
+
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
-		window.myBar = new Chart(ctx).Bar('.$nombreVariable.', {
+		window.'.$nombreVariable.' = new Chart(ctx).Bar(barChartData, {
 			responsive : ' . $this->responsive . '
 		});
 	}';
