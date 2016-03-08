@@ -41,23 +41,26 @@ class ChartJS extends \yii\base\Widget {
             default:
                 break;
         }
-        return "Hello!";
+            
     }
 
     private function generateBar() {
         
         
         $datasets=array();
+        $cantidad = 0;
         foreach ($this->data as $key => $data) {
-            
+            $colorBase = $cantidad*10+5;
             $datasets[] = array(
+                
                 "label" =>$key,
-                "fillColor" => "rgba(220,220,220,0.5)",
-                "strokeColor" => 'rgba(220,220,220,0.8)',
-                "highlightFill" => 'rgba(220,220,220,0.75)',
-                "highlightStroke" => 'rgba(220,220,220,1)',
+                "fillColor" => "rgba($colorBase,$colorBase,$colorBase,0.5)",
+                "strokeColor" => "rgba( $colorBase ,$colorBase,$colorBase,0.8)",
+                "highlightFill" => "rgba($colorBase,$colorBase,$colorBase,0.75)",
+                "highlightStroke" => "rgba($colorBase,$colorBase,$colorBase,1)",
                 "data" => $data
             );
+            $cantidad++;
             
         }
         
