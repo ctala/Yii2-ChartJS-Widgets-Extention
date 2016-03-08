@@ -28,4 +28,26 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \ctala\chartjs\AutoloadExample::widget(); ?>```
+<?
+
+echo \ctala\chartjs\ChartJS::widget([
+    "data" => $datosAno2016,
+    "responsive" => "false",
+    "titulo" => "Ventas Sitios 2016",
+    "id" => "canvas2016",
+    "height" => 500,
+    "width" => 1000,
+        ]
+);
+echo \ctala\chartjs\ChartJS::widget([
+    "data" => $datosAno2015,
+    "responsive" => "false",
+    "titulo" => "Ventas Sitios 2015",
+    "id" => "canvas2015",
+    "height" => 500,
+    "width" => 1000,
+    "chartType" => "line"
+        ]
+);
+
+?>```
