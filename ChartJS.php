@@ -73,21 +73,25 @@ class ChartJS extends \yii\base\Widget {
             $cantidad++;
         }
 
-        $nombreVariable= "myBar$this->id";
-        
+        $nombreVariable = "myBar$this->id";
+
+
+
         $script = '
 
-	window.onload = function(){
-                    var barChartData = {
+                    var barChartData' . $nombreVariable . ' = {
                         labels : ' . json_encode($this->labels) . ',
                         datasets : ' . json_encode($datasets) . '
                     }
+                    
+	aEjecutar = ajecutar + "function(){
+
 
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
-		window.'.$nombreVariable.' = new Chart(ctx).Bar(barChartData, {
+		window.' . $nombreVariable . ' = new Chart(ctx).Bar(barChartData, {
 			responsive : ' . $this->responsive . '
 		});
-	}';
+	}"';
         $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar-' . $this->id);
     }
 
