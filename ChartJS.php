@@ -8,12 +8,12 @@ use \yii\web\View;
 /**
  * This is just an example.
  */
-class AutoloadExample extends \yii\base\Widget {
+class ChartJS extends \yii\base\Widget {
 
     public $chartType = "bar";
-    public $style = "width: 100%";
+    public $style = "";
     public $id = "canvas";
-    public $class = "class='col-md-8'";
+    public $class = "class='col-md-12'";
     public $height = 450;
     public $width = 650;
     public $labels = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
@@ -50,7 +50,8 @@ class AutoloadExample extends \yii\base\Widget {
             var barChartData = {
 		labels : ' . json_encode($this->labels) . ',
 		datasets : [
-			{
+			{       
+                                label: "The Flash\'s Speed",
 				fillColor : "rgba(220,220,220,0.5)",
 				strokeColor : "rgba(220,220,220,0.8)",
 				highlightFill: "rgba(220,220,220,0.75)",
@@ -58,6 +59,7 @@ class AutoloadExample extends \yii\base\Widget {
 				data : ' . json_encode($this->data[0]) . '
 			},
 			{
+                                label: "Superman\'s Speed",
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
