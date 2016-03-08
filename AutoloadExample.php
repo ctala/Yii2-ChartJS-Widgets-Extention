@@ -24,7 +24,7 @@ class AutoloadExample extends \yii\base\Widget {
         ChartJSAsset::register($this->view);
 
         $myDiv = "<div style='$this->style'>
-			<canvas id='$this->canvas' height='$this->height' width='$this->width'></canvas>
+			<canvas id='$this->id' height='$this->height' width='$this->width'></canvas>
 		</div>";
 
         echo $myDiv;
