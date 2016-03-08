@@ -73,7 +73,7 @@ class ChartJS extends \yii\base\Widget {
             $cantidad++;
         }
 
-        $barChartData = "barChartData-".  $this->id;
+        $barChartData = "barChartData".  $this->id;
 
         $script = '
             
