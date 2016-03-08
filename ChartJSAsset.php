@@ -20,10 +20,10 @@ class ChartJSAsset extends AssetBundle {
     public $css = [
     ];
     public $js = [
+        'js/Chart.Core.js',
         'js/Chart.js',
         'js/myScripts.js',
         'js/Chart.Bar.js',
-        'js/Chart.Core.js',
         'js/Chart.Doughnut.js',
         'js/Chart.Line.js',
         'js/Chart.PolarArea.js',
