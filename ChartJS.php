@@ -18,9 +18,7 @@ class ChartJS extends \yii\base\Widget {
     public $height = 450;
     public $width = 650;
     public $labels = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-    public $data = array(
-        array(25, 35, 52, 1, 45, 6, 2, 6, 12, 6), array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-    );
+    public $data = array();
     public $responsive = true;
 
     public function run() {
@@ -82,7 +80,7 @@ class ChartJS extends \yii\base\Widget {
 			responsive : ' . $this->responsive . '
 		});
 	}';
-        $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar');
+        $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar-'.$this->id);
     }
 
 }
