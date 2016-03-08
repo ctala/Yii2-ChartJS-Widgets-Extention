@@ -22,12 +22,13 @@ class ChartJSAsset extends AssetBundle
        
     ];
     public $js = [
-        'js/Chart.Bar.js',
-        'js/Chart.Core.js',
-        'js/Chart.Doughnut.js',
-        'js/Chart.Line.js',
-        'js/Chart.PolarArea.js',
-        'js/Chart.Radar.js',
+        'js/Chart.js',
+//        'js/Chart.Bar.js',
+//        'js/Chart.Core.js',
+//        'js/Chart.Doughnut.js',
+//        'js/Chart.Line.js',
+//        'js/Chart.PolarArea.js',
+//        'js/Chart.Radar.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

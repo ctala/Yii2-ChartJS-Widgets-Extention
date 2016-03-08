@@ -3,7 +3,7 @@
 namespace ctala\chartjs;
 
 use ctala\chartjs\ChartJSAsset;
-
+use \yii\web\View;
 /**
  * This is just an example.
  */
