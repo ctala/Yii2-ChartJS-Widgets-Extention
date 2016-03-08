@@ -55,10 +55,10 @@ class ChartJS extends \yii\base\Widget {
             $colorBase = intval(200 / $tamano * $cantidad);
             $datasets[] = array(
                 "label" => $key,
-                "fillColor" => "rgba($colorBase,$colorBase,$colorBase,0.5)",
-                "strokeColor" => "rgba( $colorBase ,$colorBase,$colorBase,0.8)",
-                "highlightFill" => "rgba($colorBase,$colorBase,$colorBase,0.75)",
-                "highlightStroke" => "rgba($colorBase,$colorBase,$colorBase,1)",
+                "fillColor" => "rgba($colorBase,150,100,0.5)",
+                "strokeColor" => "rgba( $colorBase ,150,100,0.8)",
+                "highlightFill" => "rgba($colorBase,150,100,0.75)",
+                "highlightStroke" => "rgba($colorBase,150,100,1)",
                 "data" => $data
             );
             $cantidad++;
@@ -73,7 +73,7 @@ class ChartJS extends \yii\base\Widget {
 	window.onload = function(){
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
 		window.myBar = new Chart(ctx).Bar(barChartData, {
-			responsive : '. $this->responsive .'
+			responsive : ' . $this->responsive . '
 		});
 	}';
         $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar');
