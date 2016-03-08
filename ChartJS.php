@@ -49,15 +49,16 @@ class ChartJS extends \yii\base\Widget {
         
         $datasets=array();
         foreach ($this->data as $key => $data) {
-            $datasets[] = ""
-                    . "{       
-                                label: '$key',
-				fillColor : 'rgba(220,220,220,0.5)',
-				strokeColor : 'rgba(220,220,220,0.8)',
-				highlightFill: 'rgba(220,220,220,0.75)',
-				highlightStroke: 'rgba(220,220,220,1)',
-				data : ' . ".json_encode($data) ." '
-			}";
+            
+            $datasets[] = array(
+                "label" =>$key,
+                "fillColor" => "rgba(220,220,220,0.5)",
+                "strokeColor" => 'rgba(220,220,220,0.8)',
+                "highlightFill" => 'rgba(220,220,220,0.75)',
+                "highlightStroke" => 'rgba(220,220,220,1)',
+                "data" => $data
+            );
+            
         }
         
         $script = '
