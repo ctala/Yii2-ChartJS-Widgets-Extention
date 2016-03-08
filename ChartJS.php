@@ -13,7 +13,7 @@ class ChartJS extends \yii\base\Widget {
     public $chartType = "bar";
     public $style = "";
     public $id = "canvas";
-    public $class = "class='col-md-12'";
+    public $class = "col-md-12";
     public $height = 450;
     public $width = 650;
     public $labels = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
