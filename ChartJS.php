@@ -51,7 +51,8 @@ class ChartJS extends \yii\base\Widget {
         $cantidad = 1;
         $tamano = count($this->data);
         foreach ($this->data as $key => $data) {
-            $colorBase = intval(255 / $tamano * $cantidad);
+            //We use 200 because 255 is white.
+            $colorBase = intval(200 / $tamano * $cantidad);
             $datasets[] = array(
                 "label" => $key,
                 "fillColor" => "rgba($colorBase,$colorBase,$colorBase,0.5)",
