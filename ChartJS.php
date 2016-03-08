@@ -45,7 +45,9 @@ class ChartJS extends \yii\base\Widget {
         switch ($this->chartType) {
             case "bar":
                 $this->generateBar();
-
+                break;
+            case "line":
+                $this->generateLine();
                 break;
 
             default:
@@ -73,21 +75,61 @@ class ChartJS extends \yii\base\Widget {
             $cantidad++;
         }
 
-        $barChartData = "barChartData".  $this->id;
+        $barChartData = "barChartData" . $this->id;
 
         $script = '
             
-            var '.$barChartData.' = {
+            var ' . $barChartData . ' = {
 		labels : ' . json_encode($this->labels) . ',
 		datasets : ' . json_encode($datasets) . '
 	}
 	addLoadEvent(function(){
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
-		window.myBar = new Chart(ctx).Bar('.$barChartData.', {
+		window.myBar = new Chart(ctx).Bar(' . $barChartData . ', {
 			responsive : ' . $this->responsive . '
 		});
 	})';
         $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar-' . $this->id);
+    }
+
+    private function generateLine() {
+
+
+        $datasets = array();
+        $cantidad = 1;
+        $tamano = count($this->data);
+        foreach ($this->data as $key => $data) {
+            //We use 200 because 255 is white.
+            $colorBase = intval(200 / $tamano * $cantidad);
+
+            $datasets[] = array(
+                "label" => $key,
+                "fillColor" => "rgba($colorBase,150,100,0.5)",
+                "strokeColor" => "rgba( $colorBase ,150,100,0.8)",
+                "pointHighlightFill" => "rgba($colorBase,150,100,0.75)",
+                "pointHighlightStroke" => "rgba($colorBase,150,100,1)",
+                "pointColor" => "rgba($colorBase,150,100,0.75)",
+                "pointStrokeColor" => "rgba($colorBase,150,100,1)",
+                "data" => $data
+            );
+            $cantidad++;
+        }
+
+        $lineChartData = "lineChartData" . $this->id;
+
+        $script = '
+            
+            var ' . $lineChartData . ' = {
+		labels : ' . json_encode($this->labels) . ',
+		datasets : ' . json_encode($datasets) . '
+	}
+	addLoadEvent(function(){
+		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
+		window.myBar = new Chart(ctx).Line(' . $lineChartData . ', {
+			responsive : ' . $this->responsive . '
+		});
+	})';
+        $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-line-' . $this->id);
     }
 
 }
