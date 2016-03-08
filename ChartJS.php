@@ -45,28 +45,26 @@ class ChartJS extends \yii\base\Widget {
     }
 
     private function generateBar() {
+        
+        
+        $datasets=array();
+        foreach ($this->data as $key => $data) {
+            $datasets[] = ""
+                    . "{       
+                                label: '$key',
+				fillColor : 'rgba(220,220,220,0.5)',
+				strokeColor : 'rgba(220,220,220,0.8)',
+				highlightFill: 'rgba(220,220,220,0.75)',
+				highlightStroke: 'rgba(220,220,220,1)',
+				data : ' . ".json_encode($data) ." '
+			}";
+        }
+        
         $script = '
             var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
             var barChartData = {
 		labels : ' . json_encode($this->labels) . ',
-		datasets : [
-			{       
-                                label: "The Flash\'s Speed",
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,0.8)",
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
-				data : ' . json_encode($this->data[0]) . '
-			},
-			{
-                                label: "Superman\'s Speed",
-				fillColor : "rgba(151,187,205,0.5)",
-				strokeColor : "rgba(151,187,205,0.8)",
-				highlightFill : "rgba(151,187,205,0.75)",
-				highlightStroke : "rgba(151,187,205,1)",
-				data : ' . json_encode($this->data[1]) . '
-			}
-		]
+		datasets : '.  json_encode($datasets).'
 	}
 	window.onload = function(){
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
