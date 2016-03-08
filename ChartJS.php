@@ -15,8 +15,8 @@ class ChartJS extends \yii\base\Widget {
     public $style = "";
     public $id = "canvas";
     public $class = "col-md-12";
-    public $height = 450;
-    public $width = 650;
+    public $height = 0;
+    public $width = 0;
     public $labels = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
     public $data = array();
     public $responsive = true;
@@ -28,8 +28,13 @@ class ChartJS extends \yii\base\Widget {
                 "<div class='panel panel-default'>"
                 . "<div class='panel-heading'>$this->titulo</div>"
                 . "<div class='panel-body'>"
-                . "<div class='$this->class' style='$this->style'>
-			<canvas id='$this->id' height='$this->height' width='$this->width'></canvas>
+                . "<div class='$this->class' style='$this->style'>";
+        if (isset($this->height) && isset($this->width) && $this->height != 0 && $this->width != 0) {
+            $myDiv.="<canvas id='$this->id' height='$this->height' width='$this->width'></canvas>";
+        } else {
+            $myDiv.="<canvas id='$this->id'></canvas>";
+        }
+        $myDiv.="
 		</div>
                 </div>
                 </div> "
@@ -68,19 +73,21 @@ class ChartJS extends \yii\base\Widget {
             $cantidad++;
         }
 
+        $nombreVariable= "barCharData$this->id";
+        
         $script = '
             
-            var barChartData = {
+            var '.$nombreVariable.' = {
 		labels : ' . json_encode($this->labels) . ',
 		datasets : ' . json_encode($datasets) . '
 	}
 	window.onload = function(){
 		var ctx = document.getElementById("' . $this->id . '").getContext("2d");
-		window.myBar = new Chart(ctx).Bar(barChartData, {
+		window.myBar = new Chart(ctx).Bar('.$nombreVariable.', {
 			responsive : ' . $this->responsive . '
 		});
 	}';
-        $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar-'.$this->id);
+        $this->getView()->registerJs($script, View::POS_END, 'ctala-chartjs-bar-' . $this->id);
     }
 
 }
