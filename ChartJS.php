@@ -29,9 +29,11 @@ class ChartJS extends \yii\base\Widget {
         $myDiv = "<div class='row'>" .
                 "<div class='panel panel-default'>"
                 . "<div class='panel-heading'>$this->titulo</div>"
+                . "<div class='panel-body'>"
                 . "<div class='$this->class' style='$this->style'>
 			<canvas id='$this->id' height='$this->height' width='$this->width'></canvas>
 		</div>
+                </div>
                 </div> "
                 . "</div>";
 
